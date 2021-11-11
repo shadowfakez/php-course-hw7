@@ -1,0 +1,20 @@
+{
+    "name": "shadowfake/php-course-hw7",
+    "description": "hw7-builder",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "shadowfakez",
+            "email": "iamshadowfake@gmail.com"
+        }
+    ],
+    "require": {
+        "aigletter/interfaces": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "builder\\": "builder"
+        }
+    }
+}
