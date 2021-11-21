@@ -2,19 +2,21 @@
 
 namespace builder;
 
+
 use Aigletter\Interfaces\Builder\BuilderInterface;
-use Aigletter\Interfaces\Builder\SqlBuilderInterface;
+use Aigletter\Interfaces\Builder\QueryBuilderInterface;
 
-class SqlBuilder implements SqlBuilderInterface
+class QueryBuilder implements QueryBuilderInterface
 {
-    public array|string $columns;
-    public array|string $conditions;
-    public string $table;
-    public int $limit;
-    public int $offset;
-    public array $order;
 
-    private array $query = [];
+    public array|string $columns;
+    public array $conditions = [];
+    public string $table;
+    public ?int $limit = null;
+    public ?int $offset = null;
+    public array $order = [];
+
+    public array $query = [];
 
     public function select($columns): BuilderInterface
     {
@@ -58,12 +60,8 @@ class SqlBuilder implements SqlBuilderInterface
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function build(): string
+    public function build(): Query
     {
-        ksort($this->query);
-        return implode('', $this->query);
+        return new Query($this);
     }
 }
