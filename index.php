@@ -48,12 +48,23 @@ $builder
     ->where(['id' => 3])
     ->build();
 
+$builder2 = new QueryBuilder();
+
+$builder2
+    ->table('users')
+    ->select(['first_name', 'age'])
+    ->build();
+
 $db = new Db();
 
 $query = new Query($builder);
 
+$query2 = new Query($builder2);
+
+
+
 $user = $db->one($query);
-$users = $db->all($query);
+$users = $db->all($query2);
 
 print_r($user);
 print_r($users);

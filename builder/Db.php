@@ -37,7 +37,7 @@ class Db implements DbInterface
         } catch (PDOException $e) {
             die($e->getMessage());
         }
-        $db = $conn->prepare("SELECT * FROM users");
+        $db = $conn->prepare($query->toSql());
         $db->execute();
         return $db->fetchAll(PDO::FETCH_ASSOC);
     }
